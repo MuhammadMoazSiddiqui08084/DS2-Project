@@ -156,7 +156,6 @@ Silvery lutung,Yes,Yes,Yes,Yes,Yes,No,No,No,Yes,No,No
 Tenasserim lutung,Yes,Yes,Yes,Yes,Yes,No,No,No,Yes,No,No
 West Javan langur,Yes,Yes,Yes,Yes,Yes,No,No,No,Yes,No,No
 White-headed langur,Yes,Yes,Yes,Yes,Yes,No,No,No,Yes,No,No
-Homonoidae,,,,,,,,,,,
 Eastern gorilla,Yes,Yes,Yes,Yes,Yes,Yes,No,No,No,Yes,No
 Western gorilla,Yes,Yes,Yes,Yes,Yes,Yes,No,No,No,Yes,No
 Human,Yes,Yes,Yes,Yes,Yes,Yes,No,No,No,Yes,No
@@ -185,7 +184,6 @@ Northern white-cheeked gibbon,Yes,Yes,Yes,Yes,Yes,Yes,No,No,No,Yes,No
 Southern white-cheeked gibbon,Yes,Yes,Yes,Yes,Yes,Yes,No,No,No,Yes,No
 Yellow-cheeked gibbon,Yes,Yes,Yes,Yes,Yes,Yes,No,No,No,Yes,No
 Siamang,Yes,Yes,Yes,Yes,Yes,Yes,No,No,No,Yes,No
-Platyrrhines,,,,,,,,,,,
 Azara's night monkey,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,No
 Black-headed night monkey,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,No
 Brumback's night monkey,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,No
@@ -297,8 +295,7 @@ Black-fronted titi monkey,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,No
 Coastal black-handed titi monkey,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,No
 Coimbra Filho's titi monkey,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,No
 Black titi monkey,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,No
-"Collared titi monkey
-",Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,No
+Collared titi monkey,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,No
 Colombian black-handed titi monkey,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,No
 Lucifer titi monkey,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,No
 Red-headed titi monkey,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,No
@@ -347,7 +344,6 @@ Rio Tapajós saki,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,No
 Vanzolini's bald-faced saki,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,No
 White-faced saki,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,No
 White-footed saki,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,No
-Tarsiiformes,,,,,,,,,,,
 Philippine tarsier,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes
 Horsfield's tarsier,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes
 Dian's tarsier,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes
@@ -362,7 +358,6 @@ Sangihe tarsier,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes
 Siau Island tarsier,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes
 Spectral tarsier,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes
 Wallace's tarsier,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes
-Lorisoidea,,,,,,,,,,,
 Northern needle-clawed bushbaby,Yes,No,Yes,Yes,Yes,No,Yes,Yes,No,No,No
 Southern needle-clawed bushbaby,Yes,No,Yes,Yes,Yes,No,Yes,Yes,No,No,No
 Dusky bushbaby,Yes,No,Yes,Yes,Yes,No,Yes,Yes,No,No,No
@@ -398,7 +393,6 @@ Golden angwantibo,Yes,No,Yes,Yes,Yes,No,Yes,Yes,No,No,No
 Central African potto,Yes,No,Yes,Yes,Yes,No,Yes,Yes,No,No,No
 East African potto,Yes,No,Yes,Yes,Yes,No,Yes,Yes,No,No,No
 West African potto,Yes,No,Yes,Yes,Yes,No,Yes,Yes,No,No,No
-lemuroids,,,,,,,,,,,
 Hairy-eared dwarf lemur,Yes,No,Yes,Yes,Yes,No,Yes,Yes,Yes,No,No
 Ankarana dwarf lemur,Yes,No,Yes,Yes,Yes,No,Yes,Yes,Yes,No,No
 Fat-tailed dwarf lemur,Yes,No,Yes,Yes,Yes,No,Yes,Yes,Yes,No,No
