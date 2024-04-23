@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <memory>
 // #include <unordered_map>
 // #include <set>
 
@@ -11,20 +12,30 @@ struct species {
     //flat_nails, olfactory, collarbone, bipedaism, sit_up, walk_up, placenta, toothcomb, nostril, big_eyes;
 };
 
-class inverted_index {
-    std::vector<species> all_species;
+struct tree_node {
+    std::vector<species> group;
+    tree_node *left = nullptr;
+    tree_node *right = nullptr;
+};
 
+
+class inverted_index {
+    int num_attr = 10;
+    std::vector<species> all_species;
+    tree_node *root;
+
+    
     public:
     // Empty constructor to initialize an empty inverted index
-    inverted_index() {}
+    inverted_index();
 
     // Function to add a new species to the index
-    void add_species(const species& new_species) {
-        all_species.push_back(new_species);
-    }
+    void add_species(const species& new_species);
 
     // Function to compare two species and return their similarity score
     double compare_species(const species& species1, const species& species2) const ;
+
+    void construct_tree(const std::vector<species>& subgroup, tree_node *subroot, int cur_attr);
     // if (species1.flat_nails==species2.flat_nails)
     //     similar_traits++;
     

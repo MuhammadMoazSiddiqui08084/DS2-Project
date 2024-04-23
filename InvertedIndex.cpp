@@ -6,6 +6,9 @@
 
 // using namespace std;
 
+void inverted_index::add_species(const species &new_species){
+        all_species.push_back(new_species);
+    }
 
 double inverted_index::compare_species(const species& species1, const species& species2) const {
     int similar_traits = 0;
@@ -18,6 +21,39 @@ double inverted_index::compare_species(const species& species1, const species& s
     double match = similar_traits/10.0;
     return match;
 }
+
+
+inverted_index::inverted_index(){
+        // function for populating inverted index called here// 
+        root = new tree_node;
+        root->group = all_species;
+        construct_tree(all_species, root, 0);
+    }
+
+void inverted_index::construct_tree(const std::vector<species>& subgroup, tree_node *subroot, int attr){
+    tree_node *cur = subroot;
+
+    cur->left = new tree_node;
+    cur->right = new tree_node;
+
+    for (species a : subgroup){
+        if (a.features[attr]==true){
+            cur->right->group.push_back(a);
+        }
+        else{
+            cur->left->group.push_back(a);
+        }
+    }
+
+    if (2*attr+1<=num_attr){
+        construct_tree(cur->left->group, cur->left, 2*attr+1);
+    }
+    else if(2*attr+2<=num_attr){
+        construct_tree(cur->right->group, cur->right, 2*attr+2);
+    }
+}
+
+
 // // Structure to hold animal attributes
 // struct species {
 //   string species; // Added species to identify primate type
