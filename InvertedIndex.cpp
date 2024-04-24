@@ -1,8 +1,8 @@
 #include "InvertedIndex.hpp"
 
 
-void inverted_index::display_tree() const{
-    std::vector<species> cur_group = root->right->right->group;
+void inverted_index::display_node() const{
+    std::vector<species> cur_group = root->right->group;
 
     for (species a : cur_group){
         std::cout<<a.title<<std::endl;
@@ -12,7 +12,7 @@ void inverted_index::display_tree() const{
 void inverted_index::handle_data(const std::vector<std::vector<std::string>>& data){
     species cur_species;
 
-    for (size_t i=1; i<data.size(); i++){
+    for (size_t i=0; i<data.size(); i++){
         cur_species.title = data[i][0];
 
         for(int j=0; j<num_attr; j++){
@@ -39,17 +39,10 @@ double inverted_index::compare_species(const species& species1, const species& s
             similar_traits++;
         }
     }
-    double match = similar_traits/10.0;
+    double match = similar_traits/num_attr;
     return match;
 }
 
-// void inverted_index::tree_array(){
-//     tree_node* cur = root;
-//     int ind = 0;
-
-//     while ()
-//     tree[ind] = root;
-// }
 
 inverted_index::inverted_index(const std::vector<std::vector<std::string>>& data){
         // function for populating inverted index called here// 
@@ -59,9 +52,9 @@ inverted_index::inverted_index(const std::vector<std::vector<std::string>>& data
         construct_tree(all_species, root, 0);
     }
 
-void inverted_index::construct_tree(const std::vector<species>& subgroup, tree_node *subroot, int attr){
+void inverted_index::construct_tree(const std::vector<species> &subgroup, tree_node *subroot, int attr){
 
-    if (subgroup.size()<=1){
+    if (subgroup.size()<=0){
         subroot = nullptr;
     }
     else{
@@ -103,7 +96,7 @@ void inverted_index::createDotFile(std::ofstream &dotFile){
         }
 
         if (node)
-            dotFile << data << " [label=\"" << node->group.size() << "\"];\n";
+            dotFile << data << " [label=\"" << data << "\"];\n";
 
         if (node->left) {
             dotFile << data << " -> " << node->left->group.size()<< ";\n";

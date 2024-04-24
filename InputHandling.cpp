@@ -17,6 +17,7 @@ void csv_input(string filename, std::vector<std::vector<string>>& data){
 
         // Read each line of the CSV file
         while (getline(infile, line)) {
+
         // Create a vector to store the elements of the current line
         vector<string> row;
 
@@ -27,24 +28,16 @@ void csv_input(string filename, std::vector<std::vector<string>>& data){
         // Read each field (separated by comma) and add it to the row vector
         while (getline(ss, field, ',')) {
             row.push_back(field);
-            // cout<<field<<" ";
         }
-        // cout<<endl;
         // Add the row vector to the data vector
         data.push_back(row);
         }
 
         // Close the file
         infile.close();
-    } 
-    else {
-            cerr << "Error opening file: " << filename << endl;
     }
-    // for (size_t i = 0; i < data.size(); ++i) {
-    //   for (size_t j = 0; j < data[i].size(); ++j) {
-    //     cout << data[i][j] << " ";
-    //   }
-    //   cout << endl;
-    // }
+    else {
+        cerr << "Error opening file: " << filename << endl;
+    }
 
 }

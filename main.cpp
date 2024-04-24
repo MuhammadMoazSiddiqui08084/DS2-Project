@@ -4,11 +4,14 @@
 
 
 int main() {
-    // Define the filename
-    std::string csv_filename = "Primate Data - Sheet1.csv";
+    
+    std::string csv_filename = "Primate Data - Sheet1.csv"; //csv filename containing all species data
+
     std::vector<std::vector<std::string>> csv_data;
-    csv_input(csv_filename, csv_data);
-    bool csv_method = false;
+    csv_input(csv_filename, csv_data); //arranging species data
+
+    bool csv_method = false; //obtain data through csv_file
+
     inverted_index primate_data(csv_data);
 
     if (!csv_method){
@@ -30,99 +33,39 @@ int main() {
         data.push_back(entry);
         for (int i=0; i<12; i++){
             data[1].push_back(entry2[i]);
-
         }
 
         data.push_back(entry);
         for (int i=0; i<12; i++){
             data[2].push_back(entry3[i]);
-
         }
 
         data.push_back(entry);
         for (int i=0; i<12; i++){
             data[3].push_back(entry4[i]);
-
         }
         primate_data = inverted_index(data);
     
     }
         
+    primate_data.display_node();
     
-    // primate_data.display_tree();
-    
+    // if (!csv_method){
+    //     ofstream dotFile("binary_tree.dot");
+    //     if (!dotFile) {
+    //         cerr << "Error: Unable to create DOT file." << endl;
+    //         return 1;
+    //     }
 
-    ofstream dotFile("binary_tree.dot");
-    if (!dotFile) {
-        cerr << "Error: Unable to create DOT file." << endl;
-        return 1;
-    }
+    //     dotFile << "digraph BinaryTree {" << endl;
+    //     primate_data.createDotFile(dotFile);
+    //     dotFile << "}" << endl;
+    //     dotFile.close();
 
-    dotFile << "digraph BinaryTree {" << endl;
-    primate_data.createDotFile(dotFile);
-    dotFile << "}" << endl;
-    dotFile.close();
+    //     // Use Graphviz to generate image
+    //     system("dot -Tpng binary_tree.dot -o binary_tree.png");
 
-    // Use Graphviz to generate image
-    system("dot -Tpng binary_tree.dot -o binary_tree.png");
-
-    std::cout << "Binary tree visualization generated as binary_tree.png" << endl;
-
+    //     std::cout << "Binary tree visualization generated as binary_tree.png" << endl;
+    // }
     return 0;
 }
-
-// #include <iostream>
-// #include <fstream>
-// #include <string>
-// #include <queue>
-
-// using namespace std;
-
-// // Structure to represent a node in the binary tree
-// struct TreeNode {
-//     int data;
-//     TreeNode* left;
-//     TreeNode* right;
-
-//     TreeNode(int val) : data(val), left(nullptr), right(nullptr) {}
-// };
-
-// // Function to insert a new node into the binary tree
-// TreeNode* insert(TreeNode* root, int val) {
-//     if (!root) {
-//         return new TreeNode(val);
-//     }
-
-//     if (val < root->data) {
-//         root->left = insert(root->left, val);
-//     } else {
-//         root->right = insert(root->right, val);
-//     }
-
-//     return root;
-// }
-
-// Function to create a DOT representation of the binary tree
-// void createDotFile(TreeNode* root, ofstream& dotFile) {
-//     if (!root) return;
-
-//     queue<TreeNode*> q;
-//     q.push(root);
-
-//     while (!q.empty()) {
-//         TreeNode* node = q.front();
-//         q.pop();
-
-//         dotFile << node->data << " [label=\"" << node->data << "\"];" << endl;
-
-//         if (node->left) {
-//             dotFile << node->data << " -> " << node->left->data << ";" << endl;
-//             q.push(node->left);
-//         }
-//         if (node->right) {
-//             dotFile << node->data << " -> " << node->right->data << ";" << endl;
-//             q.push(node->right);
-//         }
-//     }
-// }
-
