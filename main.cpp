@@ -1,156 +1,128 @@
-#include <iostream>
-#include <fstream>
-#include <sstream>
 #include "InvertedIndex.hpp"
+#include "InvertedIndex.cpp"
+#include "InputHandling.cpp"
 
-using namespace std;
 
 int main() {
-  // Define the filename
-    string filename = "Primate Data - Sheet1.csv";
+    // Define the filename
+    std::string csv_filename = "Primate Data - Sheet1.csv";
+    std::vector<std::vector<std::string>> csv_data;
+    csv_input(csv_filename, csv_data);
+    bool csv_method = false;
+    inverted_index primate_data(csv_data);
 
-    // Create a vector of vectors to store the data
-    vector<vector<string>> data;
+    if (!csv_method){
+        //flat_nails, olfactory, collarbone, bipedaism, sit_up, walk_up, nose, placenta, toothcomb, nostril, big_eyes;
+        std::string entry1[12] = {"Preuss's Monkey", "Yes", "Yes", "Yes", "Yes", "Yes", "No", "No", "No", "Yes", "No", "No"};
+        std::string entry2[12] = {"Human", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "No","No", "No", "Yes", "No"};
+        std::string entry3[12] = {"White faced Saki", "Yes", "Yes", "Yes", "Yes", "Yes", "No", "No", "No", "No", "No", "No"};
+        std::string entry4[12] = {"Angolan dwarf golago", "Yes", "No", "Yes", "Yes", "Yes", "No", "Yes", "Yes", "No", "No", "No"};
 
-    // Open the CSV file for reading
-    ifstream infile(filename);
 
-    // Check if the file was opened successfully
-    if (infile.is_open()) {
-        string line;
+        std::vector<vector<string>> data;
+        std::vector<string> entry;
 
-        // Read each line of the CSV file
-        while (getline(infile, line)) {
-        // Create a vector to store the elements of the current line
-        vector<string> row;
-
-        // Use stringstream to split the line by comma
-        stringstream ss(line);
-        string field;
-
-        // Read each field (separated by comma) and add it to the row vector
-        while (getline(ss, field, ',')) {
-            row.push_back(field);
-        }
-        // Add the row vector to the data vector
-        data.push_back(row);
+        data.push_back(entry);
+        for (int i=0; i<12; i++){
+            data[0].push_back(entry1[i]);
         }
 
-        // Close the file
-        infile.close();
+        data.push_back(entry);
+        for (int i=0; i<12; i++){
+            data[1].push_back(entry2[i]);
 
-        // Print the data (optional)
-        for (size_t i = 0; i < data.size(); ++i) {
-        for (size_t j = 0; j < data[i].size(); ++j) {
-            cout << data[i][j] << " ";
         }
-        cout << endl;
-        }       
-        } 
-        else {
-            cerr << "Error opening file: " << filename << endl;
+
+        data.push_back(entry);
+        for (int i=0; i<12; i++){
+            data[2].push_back(entry3[i]);
+
         }
+
+        data.push_back(entry);
+        for (int i=0; i<12; i++){
+            data[3].push_back(entry4[i]);
+
+        }
+        primate_data = inverted_index(data);
+    
+    }
+        
+    
+    // primate_data.display_tree();
+    
+
+    ofstream dotFile("binary_tree.dot");
+    if (!dotFile) {
+        cerr << "Error: Unable to create DOT file." << endl;
+        return 1;
+    }
+
+    dotFile << "digraph BinaryTree {" << endl;
+    primate_data.createDotFile(dotFile);
+    dotFile << "}" << endl;
+    dotFile.close();
+
+    // Use Graphviz to generate image
+    system("dot -Tpng binary_tree.dot -o binary_tree.png");
+
+    std::cout << "Binary tree visualization generated as binary_tree.png" << endl;
 
     return 0;
 }
+
 // #include <iostream>
-// #include <vector>
-// #include <unordered_map>
+// #include <fstream>
 // #include <string>
+// #include <queue>
 
 // using namespace std;
 
 // // Structure to represent a node in the binary tree
 // struct TreeNode {
-//     string attribute;
+//     int data;
 //     TreeNode* left;
 //     TreeNode* right;
-//     vector<string> entries;
 
-//     TreeNode(string attr) : attribute(attr), left(nullptr), right(nullptr) {}
+//     TreeNode(int val) : data(val), left(nullptr), right(nullptr) {}
 // };
 
-// // Function to create a binary tree from the inverted index
-// TreeNode* createBinaryTree(const unordered_map<string, vector<vector<bool>>>& invertedIndex, const vector<string>& attributes) {
-//     if (attributes.empty()) return nullptr;
-
-//     string attribute = attributes[0];
-//     TreeNode* root = new TreeNode(attribute);
-
-//     vector<string> leftAttrs;
-//     vector<string> rightAttrs;
-
-//     // Partition the attributes based on the presence or absence of the current attribute
-//     for (size_t i = 1; i < attributes.size(); ++i) {
-//         bool presentInAll = true;
-//         bool absentInAll = true;
-//         const string& attr = attributes[i];
-
-//         for (const auto& entry : invertedIndex.at(attr)) {
-//             if (entry[0]) absentInAll = false;
-//             else presentInAll = false;
-
-//             if (!presentInAll && !absentInAll) break; // No need to check further
-//         }
-
-//         if (presentInAll) {
-//             root->entries.push_back(attr); // Add entry at leaf node
-//         } else if (absentInAll) {
-//             // Do nothing, continue to the next attribute
-//         } else {
-//             // Attribute is not consistent for all entries, partition it
-//             if (entry[0]) leftAttrs.push_back(attr);
-//             else rightAttrs.push_back(attr);
-//         }
+// // Function to insert a new node into the binary tree
+// TreeNode* insert(TreeNode* root, int val) {
+//     if (!root) {
+//         return new TreeNode(val);
 //     }
 
-//     // Recursively create left and right subtrees
-//     root->left = createBinaryTree(invertedIndex, leftAttrs);
-//     root->right = createBinaryTree(invertedIndex, rightAttrs);
+//     if (val < root->data) {
+//         root->left = insert(root->left, val);
+//     } else {
+//         root->right = insert(root->right, val);
+//     }
 
 //     return root;
 // }
 
-// // Function to print the binary tree in preorder traversal
-// void printTree(TreeNode* root, int depth = 0) {
+// Function to create a DOT representation of the binary tree
+// void createDotFile(TreeNode* root, ofstream& dotFile) {
 //     if (!root) return;
 
-//     for (int i = 0; i < depth; ++i) {
-//         cout << "  ";
-//     }
-//     cout << root->attribute << endl;
+//     queue<TreeNode*> q;
+//     q.push(root);
 
-//     for (const auto& entry : root->entries) {
-//         for (int i = 0; i < depth + 1; ++i) {
-//             cout << "  ";
+//     while (!q.empty()) {
+//         TreeNode* node = q.front();
+//         q.pop();
+
+//         dotFile << node->data << " [label=\"" << node->data << "\"];" << endl;
+
+//         if (node->left) {
+//             dotFile << node->data << " -> " << node->left->data << ";" << endl;
+//             q.push(node->left);
 //         }
-//         cout << "-> " << entry << endl;
+//         if (node->right) {
+//             dotFile << node->data << " -> " << node->right->data << ";" << endl;
+//             q.push(node->right);
+//         }
 //     }
-
-//     printTree(root->left, depth + 1);
-//     printTree(root->right, depth + 1);
 // }
 
-// int main() {
-//     // Sample inverted index (mapping attribute to vector of boolean traits)
-//     unordered_map<string, vector<vector<bool>>> invertedIndex = {
-//         {"A", {{true, true}, {true, false}, {false, true}, {false, false}}},
-//         {"B", {{true, true}, {true, false}, {false, true}, {false, false}}},
-//         {"C", {{true, true}, {true, false}, {false, true}, {false, false}}}
-//     };
-
-//     // Extract attributes from inverted index
-//     vector<string> attributes;
-//     for (const auto& entry : invertedIndex) {
-//         attributes.push_back(entry.first);
-//     }
-
-//     // Create binary tree
-//     TreeNode* root = createBinaryTree(invertedIndex, attributes);
-
-//     // Print binary tree
-//     cout << "Binary Tree:" << endl;
-//     printTree(root);
-
-//     return 0;
-// }
