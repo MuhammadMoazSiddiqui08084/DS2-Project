@@ -1,3 +1,5 @@
+# Phylogenetics using an Inverted Index
+
 Creating an interface or application for Phylogenetics, a branch of Bioinformatics. 
 
 Group Members: Muhammad Moaz Siddiqui,
